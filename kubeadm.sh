@@ -13,7 +13,11 @@ until [ -e "${await}" ] ; do
     sleep 1
 done
 
-flag=$(awk -F '=' '$1=="kubeadm"{print $2}' RS=" " /proc/cmdline)
+echo "sleeping a bit more to make sure file is written"
+
+sleep 5
+
+flag=`cat ${await}`
 
 echo "Found kubeadm flag ${flag}"
 
